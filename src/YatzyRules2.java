@@ -8,17 +8,9 @@ import java.util.Scanner;
 public class YatzyRules2 {
 
     public static HashMap<Integer, Player2> playerMap2 = new HashMap<>();
-    public static ArrayList<Integer> scoreboard = new ArrayList<>();
+    public static ArrayList<ArrayList<Integer>> scoreboard = new ArrayList<>();
     static Scanner keyboard = new Scanner(System.in);
 
-    /*public void evaluatePoints(){
-
-        for (int i=1; i<= playerMap.size(); i++) {
-            //Gå igenom alla spelares hand och få fram int-värdet på varje tärning i handen.
-            playerMap.get(i).getDicePoint();
-            System.out.println("TESTING EVAL POINTS");
-        }
-    } */
 
     public static void playerSetup(int numOfPlayers) {
         for (int i = 1; i <= numOfPlayers; i++) {
@@ -31,9 +23,8 @@ public class YatzyRules2 {
 
     public static void setScoreboard(int PlayerNr){
 
-            System.out.println("WHAT");
-            scoreboard.add(playerMap2.get(PlayerNr).evaluatePoints2(PlayerNr));
-            System.out.println("TESTING THE SCOREBOARD");
+            scoreboard.add(playerMap2.get(PlayerNr).evaluatePoints2());
+            System.out.println("THE SCORE");
             System.out.println(scoreboard);
 
     }

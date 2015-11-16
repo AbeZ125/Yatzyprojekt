@@ -11,19 +11,17 @@ public class Main {
        // CollectionOfDice.generateDice();
         System.out.println("How many players?");
         nrOfPlayers = keyboard.nextInt();
-        YatzyRules.playerSetup(nrOfPlayers);
-        //Player abe = new Player("abe");
-        //abe.getMyDice();
+        YatzyRules2.playerSetup(nrOfPlayers);
+
         CollectionOfDice.generateDice(nrOfPlayers);
         for(int i=1; i <= nrOfPlayers; i++){
-            YatzyRules.playerMap.get(i).getDice();
-            YatzyRules.playerMap.get(i).evaluatePoints(i);
-            YatzyRules.playerMap.get(i).discardDice(0);
-            YatzyRules2.setScoreboard(1);
+            YatzyRules2.playerMap2.get(i).getDice();
+          //  YatzyRules2.playerMap2.get(i).discardDice(0);
+            YatzyRules2.playerMap2.get(i).lockandRoll();
+           // YatzyRules2.playerMap2.get(i).evaluatePoints2();
+          //  YatzyRules2.setScoreboard(i);
         }
-        //abe.getDice();
-        //abe.getSomeNewDice(3);
-       // abe.discardDice(0);
+
 
     }
 }
