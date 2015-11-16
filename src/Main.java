@@ -20,6 +20,8 @@ public class Main {
             YatzyRules2.playerMap2.get(i).lockandRoll();
            // YatzyRules2.playerMap2.get(i).evaluatePoints2();
           //  YatzyRules2.setScoreboard(i);
+
+
         }
 
 

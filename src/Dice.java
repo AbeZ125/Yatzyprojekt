@@ -28,6 +28,7 @@ public class Dice {
     public boolean setDiceLock(){
         locked=true;
 
+
         return locked;
     }
 
