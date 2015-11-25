@@ -1,90 +1,99 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Player2 {
 
-    public ArrayList<Dice> handOfDice = new ArrayList<>();
+    //public ArrayList<Dice> handOfDice = new ArrayList<>();
+    public ArrayList<Dice> temporaryDiceList = new ArrayList<>();
     public ArrayList<Integer> playerTempScore = new ArrayList<>();
-    public ArrayList<Integer> scoreCard = new ArrayList<>();
+    public ArrayList<Integer> myUpperScore = new ArrayList<>();
+    public ArrayList<Integer> myLowerScore = new ArrayList<>();
+    public int[] upperTest= new int[6];
+    public int[] SUPERTESTVECTOR = {10,20,30,40,50};
+    public int[] lowerTest= new int[6];
+    int points=0;
 
     Scanner keyboard = new Scanner(System.in);
     String name ="";
-    int retry = 3;
+
 
     public Player2(String name){
         this.name=name;
     }
 
-    /*public void getMyDice() {
-        System.out.println(name + " gets 5 dice with...");
-      //CollectionOfDice.generateDice();
-    } */
+    public void gatherPoints(){
 
-    public void getDice() {
-        System.out.println("So you want some dice, eh?");
-        for(int i=1; i <= 5; i++) {
-            Dice diceChosen = CollectionOfDice.sendAwayDice(i);
-            handOfDice.add(diceChosen);
+        //    myLowerScore.add(Engine.lowerPoint);
+
+       // Engine.lowerPoint=0;
+
+      //  System.out.println(name+"s  lower score is " + myLowerScore);
+        if(Engine.pair==true){
+            lowerTest[0]+=Engine.lowerPoint;
+            Engine.pair=false;
+            System.out.println(name+"s lower score is " + Arrays.toString(lowerTest));
         }
-        System.out.println(handOfDice);
-    }
 
-    public void getSomeNewDice(int diceYouWant) {
-        System.out.println("So you want some new dice, eh?");
-        Dice diceChosen = CollectionOfDice.sendAwayDice(diceYouWant);
-        handOfDice.add(diceChosen);
-        System.out.println(handOfDice);
-    }
-
-    public void discardDice(int diceNrToThrow){
-        if(retry!=0) {
-            System.out.println("Throwing dice nr " + diceNrToThrow);
-            handOfDice.remove(diceNrToThrow);
-            System.out.println("here's your new one.");
-
-            getSomeNewDice(0);
-            System.out.println("Satisfied? You've only got " + retry + " tries left.");
-
-            String wantToReroll=keyboard.nextLine();
-            if(wantToReroll.equals("no")) {
-                retry--;
-                discardDice(diceNrToThrow);
-
-            }
+        else if(Engine.triss==true){
+            lowerTest[1]+=Engine.lowerPoint;
+            Engine.triss=false;
+            System.out.println(name+"s lower score is " + Arrays.toString(lowerTest));
         }
-        else {
-            System.out.println("Sorry, you've rerolled enough.");
-            retry=3;
+
+        else if(Engine.fyrtal==true){
+            lowerTest[2]+=Engine.lowerPoint;
+            Engine.fyrtal=false;
+            System.out.println(name+"s lower score is " + Arrays.toString(lowerTest));
         }
+
     }
 
-    public void reRollDice(){
+    public void gatherUpperPoints(int nrToScore){
 
-        //MASSA KOD!!!!!!!!!!!!!!!!
+            //Spara undan hur många förekomster av viss siffra.
+           // myUpperScore.add(Engine.countOccurence(Engine.handOfDice,nrToScore));
+            Engine.countOccurence(Engine.handOfDice,nrToScore);
+            myUpperScore.add(Engine.upperPoint);
+          //  int positionToPut = Engine.upperPoint/nrToScore;
+            //System.out.println(name+"s  upper score is " + myUpperScore);
+        for(int i=1; i<=6;i++){
+            if(i==nrToScore)
+            upperTest[i-1]=Engine.upperPoint;
+        }
+        System.out.println( name + "s upper score is " + Arrays.toString(upperTest));
+
     }
+
 
     public String toString() { // ALLTID MED (mer eller mindre standard f?r objekt).
-        return " the player now has BLALBA";
+       // return " the player now has BLALBA";
+        return name;
     }
 
-
-
-    public int evaluatePoints2(int playernr){
-        int pointSum = 0;
-        for (int i=0; i < handOfDice.size(); i++) {
-            //Gå igenom spelares hand och få fram int-värdet på varje tärning i handen.
-            int pScore = handOfDice.get(i).getDiceValue();
-            playerTempScore.add(pScore);
-
-
-            for (int j: playerTempScore){
-                pointSum = pointSum + j;
-            }
-
-            System.out.println("Player " + playernr + " has: " + pointSum);
-        }
-        scoreCard.add(pointSum);
-        return pointSum;
-
+    public String getName() {
+        return name;
     }
+
+    public int getPoints() {
+        return points;
+    }
+
+    /**
+     * Adds {@code points} to the amount of points the player currently has
+     *
+     * @param points the amount of points to add
+     */
+    public void addPoints(int points) {
+        this.points += points;
+    }
+
 }
+
+
+
+
+
+
+
+
